@@ -1,3 +1,4 @@
+// $                  node script
 //! -----------------------  Task-1  `Simple JS Program`  ------------------------
 
 //* I have 10$ amount
@@ -142,18 +143,31 @@
 //* А тепер застосуємо конкатенацію — «склеювання» рядків за допомогою +.
 //* Оголоси нову змінну resultString. Її значення «склей» із уже оголошених змінних a, b та c, щоб у результаті утворився рядок 'Concatenation'.
 
-// Наприклад:
-// const a = 'llo';
-// const b = 'He';
-// const result = b + a + '!'; // містить рядок 'Hello!'
+//* Наприклад:
+//* const a = 'llo';
+//* const b = 'He';
+//* const result = b + a + '!'; // містить рядок 'Hello!'
 
-const a = "Con";
-const b = "enation";
-const c = "cat";
-// write your code below
-const resultString = a + c + b;
+// const a = "Con";
+// const b = "enation";
+// const c = "cat";
+//! write your code below
+// const resultString = a + c + b;
 
 //! -----------------------  Task-5  ------------------------
+
+//* А тепер скористаємося інтерполяцією — вставкою змінних у рядок у зворотних лапках.
+//* Оголоси нову змінну resultString. Щоб записати їй значення, використай уже оголошені змінні a та b і зворотні лапки (``). У результаті повинен вийти рядок: Hello, world!.
+//* Зверни увагу на пробіл, кому та знак оклику, які повинні бути в результаті.
+
+//* Наприклад:
+//* const a = 'Hello';
+//* const result = `${a}!!!`; // містить рядок 'Hello!!!
+
+// const a = "Hello";
+// const b = "world";
+// //! write your code below
+// const resultString = `${a}, ${b}!`;
 
 //! -----------------------  Task-5  ------------------------
 
