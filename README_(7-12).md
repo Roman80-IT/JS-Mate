@@ -537,3 +537,525 @@ sum += i; // 1 + 2 + 3 + 4 + 5
 
 console.log(sum); // 15
 ```
+
+---
+
+## 10. Робота з рядками
+
+У цьому уроці ти продовжиш знайомитися з рядками та на практиці розбереш методи, які спрощують роботу з ними.
+
+### Довжина рядка
+
+Дізнатися довжину рядка (кількість символів у ньому) можна за допомогою властивості `length`. Наприклад:
+
+```css
+const fullName = 'Misha Hrynko';
+
+console.log(fullName.length); // 12
+```
+
+### Символ у рядку
+
+Отримати окремий символ у рядку можна за його індексом. Індекси в рядку починаються з `0` (не з `1`).
+
+Наприклад:
+
+```css
+const fullName = 'Misha Hrynko';
+
+console.log(
+fullName[0], // 'M'
+fullName[1], // 'i'
+fullName[5], // ' '
+fullName[11], // 'o'
+
+// індекс останнього символа на 1 менше за довжину рядка
+fullName[fullName.length - 1]; // 'o'
+);
+```
+
+Якщо в такий спосіб ти спробуєш отримати символ у рядку за неіснуючим індексом, то результат буде `undefined`:
+
+```css
+const name = 'Misha';
+
+console.log(
+name[0], // 'M'
+name[10], // undefined
+);
+```
+
+### Перебір рядка
+
+Часто потрібно перебрати всі символи в рядку. Для цього підійде цикл `for`:
+
+```css
+const name = 'Misha';
+
+for (let i = 0; i < name.length; i++) {
+console.log(name[i]);
+}
+```
+
+У консолі побачимо такий результат:
+
+```
+M
+i
+s
+h
+a
+```
+
+Використовуючи цикл, можна підрахувати кількість певних символів у рядку, наприклад, пробілів:
+
+```css
+const text = 'My name is Misha';
+let spacesCount = 0;
+
+for (let i = 0; i < text.length; i++) {
+// рахуємо скільки пробілів у рядку
+if (text[i] === ' ') {
+spacesCount++;
+}
+}
+
+console.log(spacesCount); // 3
+```
+
+### Перебір без індексу
+
+Перебір символів у рядку можна зробити циклом `for of`. У такому разі індекси не використовуються:
+
+```css
+const name = 'Misha';
+
+for (const letter of name) {
+console.log(letter);
+}
+```
+
+На кожному кроці в змінну `letter` записується черговий символ рядка `name`.
+
+У консолі ми побачимо:
+
+```
+M
+i
+s
+h
+a
+```
+
+### Зміна рядка
+
+Якщо треба замінити символ у рядку, то зробити це як у прикладі нижче **не вийд**е:
+
+```css
+let text = '0123456789';
+text[2] = 'X';
+```
+
+Рядок, що вже існує, змінити не можна. Але можна створити новий рядок та наповнити його потрібними символами, наприклад, у циклі:
+
+```css
+const text = 'My name is Misha';
+// пізніше в цю змінну ми запишемо новий рядок із потрібними символами
+let result = '';
+
+for (let i = 0; i < text.length; i++) {
+if (text[i] === ' ') {
+// замінюємо пробіл на '---'
+result = result + '---';
+} else {
+// додаємо всі інші символи без змін
+result = result + text[i];
+}
+}
+
+console.log(result); // 'My---name---is---Misha'
+```
+
+**Зверни увагу:** команди виду `result = result + '---'` скорочують до `result += '---'`.
+
+Цей підхід використовується для видалення символів у рядку:
+
+```css
+const text = 'My name is Misha';
+let result = '';
+
+for (let i = 0; i < text.length; i++) {
+if (text[i] !== ' ') {
+// додаємо все, крім пробілів
+result += text[i];
+}
+}
+
+console.log(result); // 'MynameisMisha'
+```
+
+### Отримання підрядка
+
+Досить часто тобі потрібно буде отримувати частину рядка (підрядок). І тут зручно скористатися методом `slice()`. Він приймає 2 аргументи:
+
+- індекс, з якого починається копіювання символів;
+- індекс, на якому закінчується копіювання символів. Символ за цим індексом не буде включений.
+
+Наприклад:
+
+```css
+const text = '0123456789';
+
+console.log(
+// символ з індексом 5 не буде включений
+text.slice(1, 5), // '1234'
+
+// беремо перші 8 символів
+text.slice(0, 8), // '01234567'
+
+// якщо початок більший за кінець, отримуємо пустий рядок
+text.slice(5, 1), // ''
+
+// без аргументів отримуємо весь рядок
+text.slice(), // '0123456789'
+
+// якщо другий аргумент не переданий, беремо все до кінця
+text.slice(2), // '23456789'
+
+// якщо індекс початку занадто великий, отримаємо пустий рядок
+text.slice(15), // ''
+
+// від'ємні індекси рахуються з кінця
+text.slice(-5, -2), // '567'
+
+// беремо останні 3 символа
+text.slice(-3), // '789'
+
+// усі символи окрім 0-го та останнього
+text.slice(1, -1), // '12345678'
+);
+```
+
+Цей метод можна використати, щоб зібрати новий рядок із частин:
+
+```css
+const text = 'I have 4 dogs';
+
+// 'I have five dogs'
+const text2 = text.slice(0, 7) + 'five' + text.slice(-5);
+
+// 'We don't have dogs'
+const text3 = `We don't ${text.slice(2, 6)} ${text.slice(-4)}`;
+```
+
+### Пошук підрядка
+
+За допомогою методу `includes()` можна перевірити, чи містить рядок певний символ або підрядок, наприклад:
+
+```css
+const name = 'Misha';
+
+console.log(
+name.includes('M'), // true
+name.includes('e'), // false
+
+// у рядку є тільки велика літера `M`
+name.includes('m'), // false
+
+// шукаємо підрядок
+name.includes('Mis'), // true
+name.includes('mis'), // false
+
+// підрядок шукається повністю, а не окремі літери
+name.includes('ia'), // false
+);
+```
+
+Пошук можна розпочати не з початку, а із зазначеного індексу. Для цього потрібно передати стартовий індекс другим аргументом, наприклад:
+
+```css
+const word = 'abrakadabra';
+
+console.log(
+word.includes('k'), // true
+
+// 'k' стоїть на 4-ому індексі, а ми починаємо перевірку з 5-го
+word.includes('k', 5), // false
+
+// якщо індекс більше довжини рядка, повертаємо false
+word.includes('b', 15), // false
+
+// якщо індекс від'ємний, шукаємо з кінця рядка
+word.includes('b', -1), // true
+word.includes('b', -100), // true
+);
+```
+
+### Регістр тексту
+
+Методи `toUpperCase()` та `toLowerCase()` повертають новий рядок, у якому всі символи вхідного рядка будуть у верхньому або нижньому регістрі.
+
+Наприклад:
+
+```css
+const name = 'Misha';
+
+console.log(
+name.toLowerCase(), // 'misha'
+name.toUpperCase(), // 'MISHA'
+
+name[0].toLowerCase(), // 'm'
+name[0].toUpperCase(), // 'M'
+);
+```
+
+**Зверни увагу:** змінити регістр можна **тільки** для літер:
+
+```css
+console.log(
+'1'.toLowerCase(), // '1'
+'1'.toUpperCase(), // '1'
+','.toUpperCase(), // ','
+' '.toUpperCase(), // ' '
+''.toUpperCase(), // ''
+);
+```
+
+Ця особливість дозволяє перевірити, чи є символ літерою:
+
+```css
+function isLetter(ch) {
+return ch.toLowerCase() !== ch.toUpperCase();
+}
+
+console.log(
+isLetter('a'), // true
+isLetter('B'), // true
+isLetter('1'), // false
+isLetter(','), // false
+isLetter(' '), // false
+);
+```
+
+Код нижче перевіряє, чи є літера великою:
+
+```css
+function isBigLetter(ch) {
+return ch !== ch.toLowerCase();
+}
+
+console.log(
+isBigLetter('A'), // true
+isBigLetter('a'), // false
+isBigLetter('1'), // false
+isBigLetter(','), // false
+isBigLetter(' '), // false
+);
+```
+
+### Регістронезалежний пошук
+
+Якщо ти хочеш перевірити, чи містить рядок певний підрядок без урахування регістру, то потрібно привести рядок і підрядок до одного регістру (наприклад, до нижнього):
+
+```css
+function search(text, part) {
+const normalizedText = text.toLowerCase();
+const normalizedPart = part.toLowerCase();
+
+return normalizedText.includes(normalizedPart);
+}
+
+console.log(
+search('Misha', 'm'), // true
+search('Misha', 'SHA'), // true
+);
+```
+
+### Початок і кінець рядка
+
+За допомогою методу `startsWith()` можна визначити, чи починається рядок із певного підрядка, а `endsWith()` — чи закінчується рядок певним підрядком.
+
+Наприклад:
+
+```css
+const name = 'Misha';
+
+console.log(
+name.startsWith('Mis'), // true
+name.startsWith('Misha'), // true
+name.startsWith('M'), // true
+
+name.startsWith('is'), // false
+name.startsWith('a'), // false
+);
+
+console.log(
+name.endsWith('a'), // true
+name.endsWith('sha'), // true
+name.endsWith('Misha'), // true
+
+name.endsWith('is'), // false
+name.endsWith('Mi'), // false
+);
+```
+
+### Видалення пробілів
+
+За допомогою методу `trim()` можна видалити всі пробіли на початку та в кінці рядку, наприклад:
+
+```css
+const name = ' Misha';
+const fullName = 'Misha Hrynko ';
+const word = ' abrakadabra ';
+
+console.log(
+name.trim(), // 'Misha'
+fullName.trim(), // 'Misha Hrynko'
+word.trim(), // 'abrakadabra'
+);
+```
+
+### Пошук індексу
+
+Щоб дізнатися, де в рядку вперше зустрічається символ чи підрядок, можна використати метод `indexOf()`. Якщо символ або підрядок знайдено, то повернеться індекс першого входження. Якщо не знайдені — повернеться `-1`.
+
+Наприклад:
+
+```css
+const name = 'My name is Misha';
+
+console.log(
+name.indexOf('y'), // 1
+name.indexOf('n'), // 3
+name.indexOf('My'), // 0
+
+// символ не знайдений
+name.indexOf('x'), // -1
+
+// регістр має значення
+name.indexOf('my'), // -1
+
+// індекс першого входження
+name.indexOf('M'), // 0
+name.indexOf('a'), // 4
+name.indexOf(' '), // 2
+
+// маленька літера 'm' стоїть шостою
+name.indexOf('m'), // 5
+);
+```
+
+Якщо пошук позиції потрібно почати з певного індексу, передай його другим аргументом:
+
+```css
+const name = 'My name is Misha';
+
+console.log(
+name.indexOf('M'), // 0
+name.indexOf('M', 1), // 11
+
+// 'M' не трапляється, починаючи з 12 індекса
+name.indexOf('M', 12), // -1
+);
+```
+
+Існує метод для пошуку індексу у зворотному напрямку — `lastIndexOf()`. Він повертає індекс останнього входження символу або підрядка:
+
+```css
+const name = 'My name is Misha';
+
+console.log(
+name.lastIndexOf('y'), // 1
+name.lastIndexOf('M'), // 11
+
+// можна вказати індекс, з якого починається пошук у зворотній бік
+name.lastIndexOf('M', 10), // 0
+);
+```
+
+### Перетворення в рядок і назад
+
+Іноді потрібно перетворити число на рядок. Це можна зробити кількома способами:
+
+```css
+const n = -123;
+
+console.log(
+String(n), // '-123'
+n.toString(), // '-123'
+`${n}`, // '-123'
+'' + n, // '-123'
+);
+```
+
+Таким способом можна отримати окрему цифру числа:
+
+```css
+function getFirstDigit(n) {
+return String(n)[0];
+}
+
+console.log(
+getFirstDigit(123), // '1'
+getFirstDigit(76543), // '7'
+getFirstDigit(0), // '0'
+);
+```
+
+Але коли ми працюємо із символами, результат завжди є рядком. Якщо далі потрібно буде число, то доведеться зробити явне приведення типів:
+
+```css
+const digits = '123';
+
+console.log(
+Number(digits), // 123
++digits, // 123
+);
+```
+
+На практиці найчастіше використовують оператор `+`.
+
+### Округлення значень
+
+Дуже часто в процесі обчислень у тебе будуть виходити не цілі числа, а дробові. Їх можна округлити:
+
+- `Math.round(x)` — округляє x до найближчого цілого (вгору або вниз):
+
+````css
+console.log(
+Math.round(10.1), // 10
+Math.round(10.5), // 11
+Math.round(10.8), // 11
+Math.round(-10.1), // -10
+Math.round(-10.5), // -10
+Math.round(-10.8), // -11
+);
+```
+
+- `Math.floor(x)` — округляє x вниз (до найближчого меншого цілого):
+```css
+console.log(
+Math.floor(10.1), // 10
+Math.floor(10.5), // 10
+Math.floor(10.8), // 10
+Math.floor(-10.1), // -11
+Math.floor(-10.5), // -11
+Math.floor(-10.8), // -11
+);
+```
+- `Math.ceil(x)` — округляє x вгору (до найближчого більшого цілого):
+```css
+console.log(
+Math.ceil(10.1), // 11
+Math.ceil(10.5), // 11
+Math.ceil(10.8), // 11
+Math.ceil(-10.1), // -10
+Math.ceil(-10.5), // -10
+Math.ceil(-10.8), // -10
+);
+```
+
+
+---
+
+````
