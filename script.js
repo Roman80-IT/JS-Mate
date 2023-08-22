@@ -890,8 +890,8 @@
 
 // Приклади (ми перевіряємо тільки цілу частину):
 
-console.log(calculateProfit(1000, 5, 1)); // 50
-console.log(calculateProfit(12500, 3, 12)); // 5322
+// console.log(calculateProfit(1000, 5, 1)); // 50
+// console.log(calculateProfit(12500, 3, 12)); // 5322
 
 /**
  * @param {number} amount
@@ -900,14 +900,14 @@ console.log(calculateProfit(12500, 3, 12)); // 5322
  *
  * @returns {number}
  */
-function calculateProfit(amount, percent, period) {
-  //! write code here
-  let sum = amount;
-  for (let i = 1; i <= period; i += 1) {
-    sum = sum + (sum * percent) / 100;
-  }
-  return sum - amount;
-}
+// function calculateProfit(amount, percent, period) {
+//   //! write code here
+//   let sum = amount;
+//   for (let i = 1; i <= period; i += 1) {
+//     sum = sum + (sum * percent) / 100;
+//   }
+//   return sum - amount;
+// }
 
 // function calculateProfit(amount, percent, period) {
 //   //! write code here
@@ -918,30 +918,96 @@ function calculateProfit(amount, percent, period) {
 //   return sum - amount;
 // }
 
-//! -----------------------  Task-9  ------------------------
+//! -----------------------  Task-10  ------------------------
+// Починаємо практикувати рядки.
 
-//! -----------------------  Task-9  ------------------------
+// Напиши функцію getStringLength, яка приймає рядок input і повертає його довжину (кількість символів у ньому).
 
-//! -----------------------  Task-9  ------------------------
+/**
+ * @param {string} input
+ *
+ * @returns {number}
+ */
+// function getStringLength(input) {
+//   //! write code here
+//   return input.length;
+// }
+// console.log(getStringLength(`input`));
+//! -----------------------  Task-10  ------------------------
+// У цьому завданні ти перевіриш, чи містить рядок вказаний підрядок.
 
-//! -----------------------  Task-9  ------------------------
+// Створи функцію isSubstring, яка приймає 2 параметри: phrase та part. Вона повинна повертати true, якщо phrase містить part, або false — якщо ні.
 
-//! -----------------------  Task-9  ------------------------
+// Зверни увагу: функція повинна враховувати регістр.
 
-//! -----------------------  Task-9  ------------------------
+// Наприклад:
 
-//! -----------------------  Task-9  ------------------------
+// console.log(isSubstring("string", "s")); // true
+// console.log(isSubstring("string", "ring")); // true
+// console.log(isSubstring("string", "bring")); // false
+// console.log(isSubstring("string", "Str")); // false, бо 'str' і 'Str' — різні рядки
 
-//! -----------------------  Task-9  ------------------------
+/**
+ * @param {string} phrase
+ * @param {string} part
+ *
+ * @returns {boolean}
+ */
+// function isSubstring(phrase, part) {
+//   //! write code here
+//   return phrase.includes(part);
+// }
 
-//! -----------------------  Task-9  ------------------------
+//! -----------------------  Task-10  ------------------------
+// У цьому завданні ти навчишся використовувати цикл for of для перебору рядка.
 
-//! -----------------------  Task-9  ------------------------
+// Реалізуй функцію countMs, яка приймає рядок text та повертає кількість літер `m` у ньому (як великих, так і маленьких).
 
-//! -----------------------  Task-9  ------------------------
+// Наприклад:
 
-//! -----------------------  Task-9  ------------------------
+// console.log(countMs("document")); // 1
+// console.log(countMs("Mermaid")); // 2 — потрібно рахувати і 'm', і 'M'
+// console.log(countMs("code")); // 0
 
-//! -----------------------  Task-9  ------------------------
+// Приклад циклу for of ти можеш знайти в розділі теорії Перебір без індексу.
 
-//! -----------------------  Task-9  ------------------------
+/**
+ * @param {string} text
+ *
+ * @returns {number}
+ */
+// function countMs(text) {
+//   let count = 0;
+//   for (const a of text) {
+//     if (a.toLowerCase() === `m`) {
+//       count += 1;
+//     }
+//   }
+//   return count;
+// }
+
+//! -----------------------  Task-10  ------------------------
+// letter;
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
+
+//! -----------------------  Task-10  ------------------------
