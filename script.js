@@ -1,3 +1,4 @@
+//            node Lesson_4/script           - запуск через термінал ≡
 // $                  node script
 //! -----------------------  Task-1  `Simple JS Program`  ------------------------
 
@@ -177,6 +178,12 @@
 //* Тобі дано код з оголошеними змінними. Зміни значення однієї з них (isWaterHot або haveTea) так, щоб canMakeTea отримала значення false.
 //* Зверни увагу: цей рядок коду змінювати не потрібно:
 //*     const canMakeTea = isWaterHot && haveTea;
+
+// const isWaterHot = true;
+// const haveTea = false;
+
+// const canMakeTea = isWaterHot && haveTea; // don't change this line
+// console.log(canMakeTea);
 //! -----------------------  Task-6  ------------------------
 
 //! -----------------------  Task-6  ------------------------
